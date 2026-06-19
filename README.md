@@ -56,12 +56,143 @@ By automating repetitive support tasks, the platform helps organizations reduce 
 
 The system consists of:
 
-* Client Layer (Web Chat Interface)
-* Backend API Layer
+* Presentation Layer (Web Chat Interface)
+* Application Layer (Django REST API)
 * AI Orchestration Layer
 * Knowledge Base & Vector Database
 * Relational Database
 * External Service Integrations
+
+## Software Architecture
+
+The AI Customer Support Assistant follows a **Modular Monolithic Architecture** implemented with Python and Django.
+
+This architectural approach provides:
+
+* Simpler development and deployment
+* Easier testing and maintenance
+* Clear separation of concerns
+* Better suitability for MVP development
+* Future migration path to microservices if required
+
+### Architectural Layers
+
+#### Presentation Layer
+
+* Web Chat Interface
+* Admin Dashboard
+
+#### Application Layer
+
+* Django
+* Django REST Framework
+* Authentication & Authorization
+* Business Logic
+
+#### AI Layer
+
+* Intent Classification
+* Retrieval-Augmented Generation (RAG)
+* Prompt Engineering
+* Response Generation
+
+#### Data Layer
+
+* PostgreSQL
+* ChromaDB (Vector Database)
+
+#### External Services Layer
+
+* OpenAI API
+* Email Services
+* Future CRM Integrations
+
+### High-Level Data Flow
+
+```text
+Customer
+    ↓
+Web Interface
+    ↓
+Django REST API
+    ↓
+AI Orchestrator
+ ┌─────────────┬─────────────┐
+ ↓             ↓
+RAG Engine   Tool Executor
+ ↓             ↓
+ChromaDB    External APIs
+     \       /
+      \     /
+       OpenAI
+          ↓
+      Response
+          ↓
+      Customer
+```
+
+## API Specification
+
+The system exposes RESTful APIs through Django REST Framework.
+
+### Authentication APIs
+
+```http
+POST /api/v1/auth/login
+POST /api/v1/auth/logout
+POST /api/v1/auth/refresh
+```
+
+### User APIs
+
+```http
+GET  /api/v1/users/me
+PUT  /api/v1/users/me
+```
+
+### Conversation APIs
+
+```http
+POST /api/v1/conversations
+GET  /api/v1/conversations
+GET  /api/v1/conversations/{conversation_id}
+```
+
+### Message APIs
+
+```http
+POST /api/v1/conversations/{conversation_id}/messages
+GET  /api/v1/conversations/{conversation_id}/messages
+```
+
+### Ticket APIs
+
+```http
+POST /api/v1/tickets
+GET  /api/v1/tickets
+GET  /api/v1/tickets/{ticket_id}
+```
+
+### Knowledge Base APIs
+
+```http
+POST   /api/v1/documents
+GET    /api/v1/documents
+DELETE /api/v1/documents/{id}
+```
+
+### Analytics APIs
+
+```http
+GET /api/v1/analytics/conversations
+GET /api/v1/analytics/tickets
+```
+
+### Authentication Strategy
+
+* JWT Authentication
+* Token-based authorization
+* Role-based access control (future enhancement)
 
 ## Technology Stack
 
@@ -69,6 +200,7 @@ The system consists of:
 
 * Python
 * Django
+* Django REST Framework
 
 ### AI & RAG
 
@@ -106,21 +238,28 @@ The initial version focuses on:
 * FAQ support using RAG
 * Basic troubleshooting assistance
 * Ticket escalation workflow
+* Knowledge base management
 * Basic analytics dashboard
 
 ## Project Status
 
 🚧 Under Development 🚧
 
-Current Progress:
+### Analysis & Design Phase
 
 * [x] Requirements Analysis
-* [x] System Design
-* [x] Database Design
-* [ ] Backend Development
-* [ ] RAG Integration
-* [ ] Frontend Development
-* [ ] Testing
+* [x] System Analysis
+* [x] Actor Identification
+* [x] Entity Identification
+* [x] Use Case Diagram
+* [x] Class Diagram
+* [x] Entity Relationship Diagram (ERD)
+* [x] System Architecture Design
+* [x] API Specification
+* [ ] Backend Development 
+* [ ] RAG Integration 
+* [ ] Frontend Development 
+* [ ] Testing 
 * [ ] Deployment
 
 ## Future Enhancements
@@ -131,14 +270,17 @@ Current Progress:
 * Predictive issue detection
 * Advanced personalization
 * Omnichannel support
+* AI-powered ticket prioritization
 
 ## License
 
 This project is being developed for academic and educational purposes.
 
-## Authors
+## Author
 
-Designed and Developed By:
+**Adamson**
 
-* Adamson
+Designed and developed the AI Customer Support Assistant, an AI-powered customer support platform that leverages Retrieval-Augmented Generation (RAG), conversational AI, and automated support workflows to improve customer service efficiency and user experience.
+
+GitHub: https://github.com/Adamsonoladipupo
 
