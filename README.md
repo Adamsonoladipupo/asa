@@ -116,7 +116,7 @@ Current Progress:
 
 * [x] Requirements Analysis
 * [x] System Design
-* [ ] Database Design
+* [x] Database Design
 * [ ] Backend Development
 * [ ] RAG Integration
 * [ ] Frontend Development
